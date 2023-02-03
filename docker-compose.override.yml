@@ -8,3 +8,13 @@ services:
     command: npm run dev
     volumes:
       - "./app:/app"
+  
+  caddy:
+    image: caddy:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
