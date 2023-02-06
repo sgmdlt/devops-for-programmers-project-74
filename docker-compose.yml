@@ -6,7 +6,7 @@ services:
     command: npm test
     image: sgmdlt/devops-project-1-app
     env_file:
-          - .env
+          - app/.env
     depends_on:
       - db
 
