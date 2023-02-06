@@ -29,7 +29,7 @@ jobs:
 
       - name: Test image
         run: |
-          make ci
+          make compose-ci
 
       - name: Push image
         uses: docker/build-push-action@v4
