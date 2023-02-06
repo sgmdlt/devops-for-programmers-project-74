@@ -40,7 +40,6 @@ jobs:
 
       - name: Check
         run: |
-          make copy-env
-          docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+          make compose-ci
 
 
