@@ -6,7 +6,7 @@ services:
     image: sgmdlt/devops-project-1-app
     command: bash -c 'sleep 3 && npm test'
     env_file:
-      - .env
+      - app/.env
     depends_on:
       - db
 
