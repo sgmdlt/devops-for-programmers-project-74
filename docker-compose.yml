@@ -5,12 +5,8 @@ services:
       dockerfile: Dockerfile.production
     image: sgmdlt/devops-project-1-app
     command: bash -c 'sleep 3 && npm test'
-    environment:
-      - DATABASE_HOST=${DATABASE_HOST}
-      - DATABASE_PORT=${DATABASE_PORT}
-      - DATABASE_NAME=${DATABASE_NAME}
-      - DATABASE_USERNAME=${DATABASE_USERNAME}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+    env_file:
+      - .env
     depends_on:
       - db
 
@@ -18,9 +14,7 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_USER: ${DATABASE_USERNAME}
-      POSTGRES_DB: ${DATABASE_NAME}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - pgdata:/var/lib/postgresql/data
 
