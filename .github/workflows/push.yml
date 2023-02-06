@@ -31,11 +31,17 @@ jobs:
         run: |
           make compose-ci
 
-      - name: Push image
+      - name: Build App
         uses: docker/build-push-action@v4
         with:
           context: .
           file: Dockerfile.production
-          cache-from: type=registry,ref=${{ env.APP_IMAGE_NAME }}:cached
+          cache-from: type=registry,ref=${{ env.APP_IMAGE_NAME }}
+          cache-to: type=inline
           push: true
-          tags: ${{ env.APP_IMAGE_NAME }}:latest
+          tags: ${{ env.APP_IMAGE_NAME }}
+
+      - name: Check
+        run: |
+          make copy-env
+          docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
