@@ -12,4 +12,4 @@ compose-ci: compose-ci-build
 	docker compose -f docker-compose.yml up --abort-on-container-exit
 
 copy-env:
-	cp -n .env.example app/.env || true
+	cp -n .env.example .env
