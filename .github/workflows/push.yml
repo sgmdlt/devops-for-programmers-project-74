@@ -29,6 +29,7 @@ jobs:
 
       - name: Check
         run: |
+          make copy-env
           docker compose -f docker-compose.yml up --abort-on-container-exit
 
       - name: Build App
