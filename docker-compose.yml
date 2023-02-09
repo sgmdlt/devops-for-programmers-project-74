@@ -5,8 +5,6 @@ services:
       dockerfile: Dockerfile.production
     image: sgmdlt/devops-project-1-app
     command: bash -c 'sleep 3 && npm test'
-    volumes:
-      - "./app:/app"
     environment:
       DATABASE_HOST: ${DATABASE_HOST}
       DATABASE_PORT: ${DATABASE_PORT}
@@ -18,10 +16,8 @@ services:
 
 
   db:
-    image: postgres:15-alpine
+    image: postgres:latest
     restart: always
-    volumes:
-      - pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
